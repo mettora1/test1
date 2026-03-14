@@ -2,19 +2,18 @@ apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 
 react {
-    bundleInRelease = true
 }
 
 android {
     namespace "com.calculator"
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    ndkVersion rootProject.ext.ndkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 34
+    ndkVersion "25.1.8937393"
+    buildToolsVersion "34.0.0"
 
     defaultConfig {
         applicationId "com.calculator"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
     }
