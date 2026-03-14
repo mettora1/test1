@@ -1,31 +1,51 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 
 export default function App() {
   const [display, setDisplay] = useState('0');
   const [prev, setPrev] = useState(null);
   const [op, setOp] = useState(null);
 
+  React.useEffect(() => {
+    try {
+      console.log('App started successfully');
+    } catch (e) {
+      Alert.alert('Error', e.toString());
+    }
+  }, []);
+
   const handleNum = (num) => {
-    setDisplay(display === '0' ? String(num) : display + num);
+    try {
+      setDisplay(display === '0' ? String(num) : display + num);
+    } catch (e) {
+      Alert.alert('Error', e.toString());
+    }
   };
 
   const handleOp = (operator) => {
-    setPrev(parseFloat(display));
-    setOp(operator);
-    setDisplay('0');
+    try {
+      setPrev(parseFloat(display));
+      setOp(operator);
+      setDisplay('0');
+    } catch (e) {
+      Alert.alert('Error', e.toString());
+    }
   };
 
   const calculate = () => {
-    const curr = parseFloat(display);
-    let result = 0;
-    if (op === '+') result = prev + curr;
-    else if (op === '-') result = prev - curr;
-    else if (op === '×') result = prev * curr;
-    else if (op === '÷') result = prev / curr;
-    setDisplay(String(result));
-    setOp(null);
-    setPrev(null);
+    try {
+      const curr = parseFloat(display);
+      let result = 0;
+      if (op === '+') result = prev + curr;
+      else if (op === '-') result = prev - curr;
+      else if (op === '×') result = prev * curr;
+      else if (op === '÷') result = prev / curr;
+      setDisplay(String(result));
+      setOp(null);
+      setPrev(null);
+    } catch (e) {
+      Alert.alert('Error', e.toString());
+    }
   };
 
   const clear = () => {
